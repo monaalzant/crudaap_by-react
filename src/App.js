@@ -22,12 +22,17 @@ class App extends Component {
     e.preventDefault();
     let Current=this.state.current;
     let Courses=this.state.courses;
+   
+   if(Current){
     Courses.push({name:Current})
     this.setState({
       courses:Courses,
       Current:''
     })
+    }
+    
   }
+
   //deleteCourse
   deleteCourse=(index)=>{
     let courses=this.state.courses;
@@ -56,7 +61,7 @@ class App extends Component {
     <section className="App">
       <h2>Add Course</h2>
       <CourseForm current={this.state.Current} updateCourse={this.updateCourse} addCourse={this.addCourse} />
-      <ul>{courseList}</ul>
+    <ul>{ this.state.courses.length > 0 ? courseList : <p>No Courses To Show! Please Add New Course.</p>}</ul>
 
     </section>  
     );
